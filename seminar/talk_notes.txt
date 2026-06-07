@@ -1,0 +1,44 @@
+### TALK 1
+Equivariance
+
+Rough and smooth loss
+Weird Kernel for Rotating
+
+Story:
+Problem --> What helps us to solve problem --> solution --> limitations
++ In between question
+
+
+### TALK 2
+Automatic Differentiation
+
++ diagrams instead of bullet points
++ Jupyter as presentation (RISE)
+
+
+### TALK 3
+Neural ODEs
+
++ animated Equations (Morph in Powerpoint)
++ hierachical slides with a diagram/graphic everytime
+
+
+### TALK 4
+Hamiltonian and Lagrangian Networks
+
+Q: application
+
+
+### TALK 5
+Physics Informed NN
+
+Q: How to put in boundary conditions?
+
+
+# TALK 6
+Deep Operator Learning
+
+Q: how to encode function in branch network?
+Q: is DOL good for applications?
+
+- have image of what the equation is about

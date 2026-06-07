@@ -1,0 +1,51 @@
+
+### TALK STRUCTURE
+
+Forward vs Inverse Problems
+
+Microlensing as Inverse Problem
+
+Struggles of classical Methods: Fit/MCMC
+- convergence computationally expensive
+- stuck in degeneracies e.g. wide-close degeneracy (grid searches expensive)
+- Likelihood evaluation (expensive, unavailable --> approximated with gaussian)
+- show likelihood in Bayes equation p(theta|x) = p(x|theta) * p(theta) / p(x)
+
+SBI 
+- replaces Bayes equation with NN
+- learns to relate x to posterior p(theta|x)
+- does not need to evaluate likelihood (likelihood-free)
+- just needs to sample x from a simulation (dependend on theta)
+
+Simple Example of Ball getting thrown at angle theta (show code throughout)
+
+Training SBI
+- choose prior p(theta)
+- generate dataset (x, theta)
+- sample posteriors from dataset
+- train network
+- network architecture
+
+Evaluation of observed data
+- 
+
+Back to complicated example
+
+Benefits (Comparison)
+- skip Likelihood evaluation
+- Amortized Inference
+- network aware of entire posterior (sees degeneracies)
+- 
+
+Limitations (Comparison)
+- gives a neural approximation of the posterior
+- no quality of posterior (for MCMC you can test convergence)
+- cases not in simulation give nonsensical results (for MCMC convergence again)
+- 
+
+Microlensing SBI paper
+- 
+
+Additional example
+- Using Flow Matching to enhance SBI
+- Gravitational Wave paper
