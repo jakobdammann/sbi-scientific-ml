@@ -2,50 +2,67 @@
 ### TALK STRUCTURE
 
 Forward vs Inverse Problems
+- get data from parameters (e.g. solve an ODE, simulation)
+- now: get parameters from (observed) data
 
 Microlensing as Inverse Problem
+- gravitational lensing, magnification, images, lightcurve
+- binary lens, exoplanet, caustics
+- use grid search, mcmc to infer posterior
+- problems: highly multimodal posterior
+- high amount of data due to Roman ST Survey
 
-Struggles of classical Methods: Fit/MCMC
+Struggles of Bayesian Inference: MCMC
 - convergence computationally expensive
-- stuck in degeneracies e.g. wide-close degeneracy (grid searches expensive)
-- Likelihood evaluation (expensive, unavailable --> approximated with gaussian)
+- stuck in degeneracies e.g. wide-close degeneracy (grid searches expensive, human interference)
+- likelihood evaluation (expensive --> needs simulator output, unavailable --> approximated with gaussian)
 - show likelihood in Bayes equation p(theta|x) = p(x|theta) * p(theta) / p(x)
 
 SBI 
-- replaces Bayes equation with NN
 - learns to relate x to posterior p(theta|x)
-- does not need to evaluate likelihood (likelihood-free)
+- does not need to evaluate likelihood (likelihood-free), likelihood is implicitly inside simulator
 - just needs to sample x from a simulation (dependend on theta)
+- uses a simulation to generate these samples
+- so: replaces Bayes equation with NN (Neural Posterior Estimation)
+- variations NLE, NRE
+- apply the network on observed data to estimate the posterior of the model parameters
 
-Simple Example of Ball getting thrown at angle theta (show code throughout)
+Benefits (Comparison)
+- likelihood-free (no likelihood evaluation)
+- amortized inference
+- learns multimodal posterior distributions directly (with degeneracies, network aware of entire posterior)
+
+Simple Example 
+- Ball getting thrown at angle theta
+- maybe better example
 
 Training SBI
 - choose prior p(theta)
+- sample theta from prior
 - generate dataset (x, theta)
-- sample posteriors from dataset
-- train network
-- network architecture
+- horizontals are like posteriors in this dataset (but difficult in high dimensions)
+- train network on paired dataset
+- loss function, E(-log(q(theta,x))), essentially cross entropy with p(theta,x)
+- network architecture, NPE, Normalizing Flows
 
-Evaluation of observed data
-- 
-
-Back to complicated example
-
-Benefits (Comparison)
-- skip Likelihood evaluation
-- Amortized Inference
-- network aware of entire posterior (sees degeneracies)
-- 
+Evaluation of observed data in example (show code)
+- compare/show posteriors
+- corner plots or so
 
 Limitations (Comparison)
-- gives a neural approximation of the posterior
+- gives only a neural approximation of the posterior
 - no quality of posterior (for MCMC you can test convergence)
+- calibration of posterior difficult (over-/underconfident)
 - cases not in simulation give nonsensical results (for MCMC convergence again)
-- 
+- simulation has to approximate the real world physics, dependence on correct simulator
 
 Microlensing SBI paper
-- 
+- results
+- 10^5 posterior samples per second
+- show correctly interpreted close wide degeneracy, disconnected modes (fig 3,5)
+- posteriors of most parameters are well calibrated (fig 8)
 
-Additional example
-- Using Flow Matching to enhance SBI
-- Gravitational Wave paper
+Additional Examples / Outlook
+- Using Flow Matching or Diffusion to enhance SBI
+- Gravitational Wave paper (Flow Matching)
+- Simformer
