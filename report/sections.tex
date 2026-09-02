@@ -1,0 +1,110 @@
+% ---------------------------------------------------------------------
+\section{Introduction}%
+\label{sec:intro}
+
+What are inverse problems (in contrast to forward problems)
+
+Inferring the parameter posterior with classical Bayesian methods
+or Simulation Based Inference
+
+Short: examples where posterior estimation is needed
+
+Section Roadmap
+
+
+% ---------------------------------------------------------------------
+\section{Classical Bayesian Inference}%
+\label{sec:bayes}
+
+General concept of Bayes equation
+
+\begin{equation}
+  p(\theta | x) = \frac{p(x | \theta)}{p(x)} p(\theta)
+  \label{eq:bayes}
+\end{equation}
+
+Methods of inference, MCMC
+
+Limitations: convergence, local approximation, multimodal posteriors
+
+
+% ---------------------------------------------------------------------
+\section{Introduction to Simulation Based Inference}%
+\label{sec:sbi}
+
+Key concepts:
+
+Skip Likelihood inference, implicit in simulation
+
+Neural Posterior Estimation (NPE)
+
+Sampling from simulator, train neural network, estimate posterior from observation \cref{fig:sbi-workflow}
+
+\begin{figure}[htbp]
+  \centering
+  % \includegraphics[width=0.8\linewidth]{figures/example.pdf}
+  \fbox{\parbox[c][4cm][c]{0.8\linewidth}{\centering Figure placeholder}}
+  \caption{Workflow of SBI.}%
+  \label{fig:sbi-workflow}
+\end{figure}
+
+% ---------------------------------------------------------------------
+\section{Simple SBI Example}%
+\label{sec:example}
+
+Example: angled throw
+
+choose parameter prior, create simulator of throw, simulate dataset
+
+train neural network, here normalizing flows, any network works
+
+loss function
+
+\begin{equation}
+  L(\phi) = 
+  \label{eq:loss}
+\end{equation}
+
+use network to evaluate observation, data and param interval
+
+
+% ---------------------------------------------------------------------
+\section{Benefits and Limitations}%
+\label{sec:benefits-limitations}
+
+Key benefits: 
+very fast inference (Amortized Inference), 
+Likelihood-free (no approximation or expensive computation), 
+multimodal posteriors
+
+Limitations: 
+Upfront training, 
+model misspecification (common pitfall)
+posterior is a neural estimation
+uncalibrated posterior
+
+
+% ---------------------------------------------------------------------
+\section{Application}%
+\label{sec:application}
+
+Short explanation of microlensing
+
+Results of usage of SBI \citep{microlensing-sbi}
+
+Short explanation of gravitational waves and black hole mergers
+
+use of flow matching networks
+
+results of usage here \citep{flow-matching-sbi}
+
+Other applications
+
+
+% ---------------------------------------------------------------------
+\section{Conclusion}%
+\label{sec:conclusion}
+
+Benefits and Limitations (stuff from abstract)
+
+When to use SBI\: inverse problem, time critical inference, expensive likelihood evaluation, multimodal posterior

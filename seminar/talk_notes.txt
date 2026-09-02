@@ -42,3 +42,29 @@ Q: how to encode function in branch network?
 Q: is DOL good for applications?
 
 - have image of what the equation is about
+
+
+# TALK 7
+Diffusion Models
+
+
+# TALK 8
+Flow Matching
+
+Q: Reason we go to conditional flow matching?
+Q: 
+
++ Summary slide
+
+
+### TALK 12
+Agentic AI in HEP
+
+
+
+### TALK 14
+Video Diffusion Models
+
+
+
+DEADLINE for report: 31.08.2026

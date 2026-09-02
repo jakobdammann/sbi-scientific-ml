@@ -1,0 +1,21 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Dax et~al.(2023)Dax, Wildberger, Buchholz, Green, Macke, and Schölkopf]{flow-matching-sbi}
+Maximilian Dax, Jonas Wildberger, Simon Buchholz, Stephen~R. Green, Jakob~H. Macke, and Bernhard Schölkopf.
+\newblock Flow matching for scalable simulation-based inference, 2023.
+\newblock URL \url{https://arxiv.org/abs/2305.17161}.
+
+\bibitem[Zhang et~al.(2021)Zhang, Bloom, Gaudi, Lanusse, Lam, and Lu]{microlensing-sbi}
+Keming Zhang, Joshua~S. Bloom, B.~Scott Gaudi, François Lanusse, Casey Lam, and Jessica~R. Lu.
+\newblock Real-time likelihood-free inference of roman binary microlensing events with amortized neural posterior estimation.
+\newblock \emph{The Astronomical Journal}, 161\penalty0 (6):\penalty0 262, May 2021.
+\newblock ISSN 1538-3881.
+\newblock \doi{10.3847/1538-3881/abf42e}.
+\newblock URL \url{http://dx.doi.org/10.3847/1538-3881/abf42e}.
+
+\end{thebibliography}

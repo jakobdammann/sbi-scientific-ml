@@ -66,3 +66,13 @@ Additional Examples / Outlook
 - Using Flow Matching or Diffusion to enhance SBI
 - Gravitational Wave paper (Flow Matching)
 - Simformer
+
+
+
+
+- Using Microlensing paper (also example at the beginning)?
+- How does the prior affect the posterior in SBI?
+
+
+
+use MCMC demonstration

@@ -1,0 +1,65 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[a4paper,margin=1in]{geometry}   % sane margins
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}                % math
+\usepackage{graphicx}                       % figures
+\usepackage{booktabs}                       % nice tables (\toprule etc.)
+\usepackage{caption}
+\usepackage[labelfont=bf,font=small]{caption}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}                       % clickable refs/links
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+\usepackage[capitalise]{cleveref}           % \cref{} for smart cross-refs
+\usepackage[round,authoryear]{natbib}       % (Author, Year) citations
+\usepackage{setspace}
+\setstretch{1.08}                           % slightly open leading, still compact
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{1.4em}{0.7em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.5em}
+
+% Title
+\title{
+    \vspace{-1em}
+    A Short Report on Simulation Based Inference\\[0.4em]
+    \large Scientific Machine Learning Seminar}
+\author{
+  Jakob Dammann\\
+  \small Faculty of Physics and Astronomy, University Heidelberg\\
+  \small \texttt{jakob.dammann@stud.uni-heidelberg.de}\\[0.3em]
+  \small Supervisor: Tobias Buck\\
+  \small Interdisciplinary Center for Scientific Computing, University Heidelberg
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% ---------------------------------------------------------------------
+\begin{abstract}
+\noindent
+Simulation Based Inference (SBI) offers a novel approach to solve inverse problems powered by machine learning. 
+Hereby, a neural network learns to relate datapoints from a simulated dataset to a posterior distribution of model parameters.
+It can outperform classical Bayesian inference methods in inference speed and posterior accuracy.
+Additionally, SBI does not require any likelihood evaluation which often is computationally costly or has to be approximated.
+Common problems like model misspecification, neural inaccuracies or miscalibrated posteriors can limit the usefulness of SBI if they are not circumvented.
+Exemplary usecases for SBI are inferring the complex parameter posteriors from planetary microlensing events or gravitational waves from black hole mergers.
+\end{abstract}
+
+% Sections
+\input{sections.tex}
+
+% ---------------------------------------------------------------------
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+% ---------------------------------------------------------------------
+% \appendix
+% \section{Additional Material}%
+% \label{sec:appendix}
+% Supplementary derivations, extra tables, or code listings.
+
+\end{document}
