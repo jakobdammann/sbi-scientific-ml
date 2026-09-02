@@ -1,4 +1,4 @@
-\begin{thebibliography}{2}
+\begin{thebibliography}{3}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,11 @@
 Maximilian Dax, Jonas Wildberger, Simon Buchholz, Stephen~R. Green, Jakob~H. Macke, and Bernhard Schölkopf.
 \newblock Flow matching for scalable simulation-based inference, 2023.
 \newblock URL \url{https://arxiv.org/abs/2305.17161}.
+
+\bibitem[Deistler et~al.(2025)Deistler, Boelts, Steinbach, Moss, Moreau, Gloeckler, Rodrigues, Linhart, Lappalainen, Miller, Gonçalves, Lueckmann, Schröder, and Macke]{sbi-guide}
+Michael Deistler, Jan Boelts, Peter Steinbach, Guy Moss, Thomas Moreau, Manuel Gloeckler, Pedro L.~C. Rodrigues, Julia Linhart, Janne~K. Lappalainen, Benjamin~Kurt Miller, Pedro~J. Gonçalves, Jan-Matthis Lueckmann, Cornelius Schröder, and Jakob~H. Macke.
+\newblock Simulation-based inference: A practical guide, 2025.
+\newblock URL \url{https://arxiv.org/abs/2508.12939}.
 
 \bibitem[Zhang et~al.(2021)Zhang, Bloom, Gaudi, Lanusse, Lam, and Lu]{microlensing-sbi}
 Keming Zhang, Joshua~S. Bloom, B.~Scott Gaudi, François Lanusse, Casey Lam, and Jessica~R. Lu.

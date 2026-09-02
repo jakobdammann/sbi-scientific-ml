@@ -2,14 +2,28 @@
 \section{Introduction}%
 \label{sec:intro}
 
-What are inverse problems (in contrast to forward problems)
+% What are inverse problems (in contrast to forward problems)
+In computational physics there are usually two types of problems to solve: 
+Firstly, forward problems where the parameters and/or boundary conditions of a model are given and the goal is to find data or a data distribution which adheres to this model. 
+For example in the case of given parameters and initial values this is a typical simulation.
 
-Inferring the parameter posterior with classical Bayesian methods
-or Simulation Based Inference
+Though secondly, there are also inverse problems where the data is the preset and now the parameters or parameter distributions of the assumed model have to be inferred.
+So here the data likely comes from an observation and the parameters which represent physical properties of the system have to be computed.
+This is the type of problem that will be explored in this report.
 
-Short: examples where posterior estimation is needed
+% Inferring the parameter posterior with classical Bayesian methods or Simulation Based Inference
+A rather simple case of solving an inverse problem is the use of linear regression to fit a function to a given dataset.
+But for more complex models also methods with higher efficiency are needed.
+The classical approach here is to use Bayesian methods to infer the parameter posterior distribution, but Simulation Based Inference introduces machine learning techniques to solving inverse problems.
+SBI is able to solve these problems in some cases more efficiently and computationally cheaper.
+% Short: examples where posterior estimation is needed
+Applications where SBI shows advantages are (but not limited to) gravitational microlensing \citep{microlensing-sbi}, gravitational wave physics \citep{flow-matching-sbi} and neuroscience \citep[Sec.\,4.2]{sbi-guide}.
 
-Section Roadmap
+% Section Roadmap
+In \cref{sec:bayes} the general concepts of classical Bayesian inference are first explored, specifically focussing on Markov-Chain-Monte-Carlo methods.
+Then SBI and its underlying concepts are introduced in \cref{sec:sbi} and exemplified in \cref{sec:example} with the help of a toy-example.
+The advantages and limitations of SBI are presented in \cref{sec:benefits-limitations}.
+Two exemplary applications with results are portrayed in \cref{sec:application} and a conclusion is given in \cref{sec:conclusion}.
 
 
 % ---------------------------------------------------------------------

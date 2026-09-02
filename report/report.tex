@@ -19,19 +19,30 @@
 \usepackage{titlesec}
 \titlespacing*{\section}{0pt}{1.4em}{0.7em}
 \titlespacing*{\subsection}{0pt}{1.1em}{0.5em}
+\usepackage{parskip}   % adds vertical space between paragraphs, removes indent
 
 % Title
 \title{
     \vspace{-1em}
     A Short Report on Simulation Based Inference\\[0.4em]
     \large Scientific Machine Learning Seminar}
+
 \author{
+\begin{minipage}[t]{0.48\textwidth}
+  \centering
   Jakob Dammann\\
-  \small Faculty of Physics and Astronomy, University Heidelberg\\
-  \small \texttt{jakob.dammann@stud.uni-heidelberg.de}\\[0.3em]
-  \small Supervisor: Tobias Buck\\
-  \small Interdisciplinary Center for Scientific Computing, University Heidelberg
+  \small Faculty of Physics and Astronomy\\ University Heidelberg\\
+  \small \texttt{jakob.dammann@stud.uni-heidelberg.de}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \centering
+  Supervisor: Tobias Buck\\
+  \small Interdisciplinary Center for Scientific Computing\\ University Heidelberg\\
+  \small \texttt{tobias.buck@iwr.uni-heidelberg.de}
+\end{minipage}
 }
+
 \date{\today}
 
 \begin{document}
