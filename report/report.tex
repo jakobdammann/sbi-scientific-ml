@@ -24,7 +24,7 @@
 % Title
 \title{
     \vspace{-1em}
-    A Short Report on Simulation Based Inference\\[0.4em]
+    A Short Report on Simulation-Based Inference\\[0.4em]
     \large Scientific Machine Learning Seminar}
 
 \author{
@@ -52,12 +52,13 @@
 % ---------------------------------------------------------------------
 \begin{abstract}
 \noindent
-Simulation Based Inference (SBI) offers a novel approach to solve inverse problems powered by machine learning. 
-Hereby, a neural network learns to relate datapoints from a simulated dataset to a posterior distribution of model parameters.
-It can outperform classical Bayesian inference methods in inference speed and posterior accuracy.
-Additionally, SBI does not require any likelihood evaluation which often is computationally costly or has to be approximated.
-Common problems like model misspecification, neural inaccuracies or miscalibrated posteriors can limit the usefulness of SBI if they are not circumvented.
-Exemplary usecases for SBI are inferring the complex parameter posteriors from planetary microlensing events or gravitational waves from black hole mergers.
+Simulation-Based Inference (SBI) offers a novel approach to solve inverse problems powered by machine learning. 
+Hereby, a neural network learns to map observed data to a posterior distribution over model parameters.
+By using simulations, SBI does not require any likelihood evaluation which otherwise often is computationally costly or has to be approximated.
+This can allow SBI to outperform classical Bayesian inference methods in inference speed and posterior accuracy.
+However, common problems like model misspecification, neural inaccuracies or miscalibrated posteriors can limit the usefulness of SBI if they are not circumvented.
+This report presents basic SBI methodology, in particular Neural Posterior Estimation, discusses its advantages and limitations
+and reviews two exemplary applications for SBI: detecting planetary events from gravitational microlensing and inferring black hole merger parameters from gravitational waves.
 \end{abstract}
 
 % Sections
