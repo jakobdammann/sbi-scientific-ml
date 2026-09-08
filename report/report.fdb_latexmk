@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex report"] 1788619385.49991 "report.aux" "report.bbl" "report" 1788619386.42521 0
+["bibtex report"] 1788695626.26706 "report.aux" "report.bbl" "report" 1788871652.18096 0
   "./references.bib" 1788618296.6962 1819 648c960ef7e6891cd29df373a14d4e8d ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1788619386.22921 3238 cdbf71a56f6cee6d5d7e42a3fba027d6 "pdflatex"
+  "report.aux" 1788871651.87662 3259 dc20c0c5084bb314f05075a51f076948 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1788619385.66002 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1788619386.42543 0
+["pdflatex"] 1788871651.2049 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1788871652.18182 0
   "/etc/texmf/web2c/texmf.cnf" 1752061707.73798 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/jakob/projects/sbi-scientific-ml/report/report.tex" 1788615968.31479 3098 8eb09a9bc7147b1fa75cea650db38771 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -41,6 +41,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -124,11 +125,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1786119970.80818 5349216 bf3a80e68d946c7acd95ff030fd9bb63 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1786120028 6830993 583a468a97b9bc339d219c52b49f970f ""
-  "report.aux" 1788619386.22921 3238 cdbf71a56f6cee6d5d7e42a3fba027d6 "pdflatex"
-  "report.bbl" 1788619385.64921 1974 b9d9b7f4f22e454e3bc1c7a59993a0bc "bibtex report"
-  "report.out" 1788619386.22921 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
+  "report.aux" 1788871651.87662 3259 dc20c0c5084bb314f05075a51f076948 "pdflatex"
+  "report.bbl" 1788695626.32531 1974 b9d9b7f4f22e454e3bc1c7a59993a0bc "bibtex report"
+  "report.out" 1788871651.87662 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
   "report.tex" 1788615968.31479 3098 8eb09a9bc7147b1fa75cea650db38771 ""
-  "sections.tex" 1788619383.82522 7011 148b890ad684dc671d751f2eec2edeca ""
+  "sections.tex" 1788871650.97108 7810 997089f7a0829c11dec26799271ec476 ""
   (generated)
   "report.aux"
   "report.log"

@@ -33,7 +33,7 @@ Two exemplary applications with results are portrayed in \cref{sec:application} 
 % General concept of Bayes equation
 The most outstanding feature of Bayesian Inference in comparison to regression is that the output of BI is a posterior distribution of the parameters instead of just the most likely parameter set sampled from this distribution.
 So instead of just computing $\theta \sim p(\theta|x)$, the result is the full $p(\theta|x)$ distribution.
-The naming convention here is that $\theta$ is the set of parameters from the model and $x$ is the data. 
+The naming convention here is that $\theta$ is the set of parameters from the model and $x$ is the observed data. 
 
 The underlying concept is the Bayes equation 
 \begin{equation}
@@ -52,12 +52,17 @@ In Metropolis-Hastings, a MCMC method, the likelihood value at a random point in
 The accumulated distribution of the accepted points then converges to the posterior after many evaluations \citep{prado2026metropolishastingsscalablesubsampling}.
 
 % Limitations: convergence, local approximation, multimodal posteriors
-There are adjusted methods that can make these more efficiently (like introducing random walk instead of true random sampling) but all classical Bayesian inference methods suffer from similar key limitations:
+There are adjusted methods that can make the algorithm more efficient (like introducing random walk instead of true random sampling) but all classical Bayesian inference methods suffer from similar key limitations:
 The convergence to a posterior that is accurate enough for the specific application takes many evaluations of the likelihood and is therefore very computationally expensive.
 For the applications that are later shown in \cref{sec:application} this can be up to 1 second per evaluation, for an adequately sampled posterior distribution the computation time per analyzed dataset can be huge.
 
-When
+In complex models the exact evaluation of the likelihood is often not possible or a lot more computationally expensive, so it has to be approximated by a Gaussian distribution, usually as part of the $\chi^2$ method.
+This inserts another error source into the posterior distribution.
 
+Classical Bayesian inference methods also have the problem that they cannot model multimodal posteriors very well.
+The algorithm often gets stuck in one mode and is unable to jump to another, this becomes a problem in models with a lot of close degeneracies \citep{sbi-guide}.
+In turn, grid searches and human intervention are often needed increases the time and effort of the data analysis process.
+This may not be a possibility for the huge amounts of data that needs to be processed in modern science.
 
 
 % ---------------------------------------------------------------------
