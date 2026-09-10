@@ -61,7 +61,7 @@ This inserts another error source into the posterior distribution.
 
 Classical Bayesian inference methods also have the problem that they cannot model multimodal posteriors very well.
 The algorithm often gets stuck in one mode and is unable to jump to another, this becomes a problem in models with a lot of close degeneracies \citep{sbi-guide}.
-In turn, grid searches and human intervention are often needed increases the time and effort of the data analysis process.
+In turn, grid searches and human intervention are often needed which increases the time and effort of the data analysis process.
 This may not be a possibility for the huge amounts of data that needs to be processed in modern science.
 
 
@@ -69,13 +69,39 @@ This may not be a possibility for the huge amounts of data that needs to be proc
 \section{Introduction to Simulation-Based Inference}%
 \label{sec:sbi}
 
-Key concepts:
+% Skip Likelihood evaluation, implicit in simulation
+The key feature of Simulation-Based Inference is the skipping of the computationally expensive likelihood evaluation.
+This is the reason SBI is sometimes also called Likelihood-Free Inference.
+Instead of explicitly using a method to evaluate the likelihood at specific points in parameter space, the likelihood is implicitly given when sampling data from a simulator of the model.
+A neural network will train on this simulated dataset to infer a parameter posterior distribution from an observation.
+The likelihood still exists inside the dataset but does not have to be calculated or approximated.
 
-Skip Likelihood inference, implicit in simulation
+% Neural Posterior Estimation (NPE)
+This report focusses on the direct inference of posteriors, this methodology is called Neural Posterior Estimation (NPE).
+This is in contrast to Neural Likelihood Estimation (NLE) and Neural (Likelihood-)Ratio Estimation (NRE), they respectively require an additional step of computation to achieve the posterior but may offer advantages or more insight in the analysis process.
 
-Neural Posterior Estimation (NPE)
+% Sampling from simulator, train neural network, estimate posterior from observation
+The SBI workflow can be subdivided into three steps as shown in \cref{fig:sbi-workflow}:
+First, the simulator has to generate a relatively large dataset in accordance with the physical model.
+To achieve this, an adequate parameter prior distribution is chosen according to guesses on the physical properties of the model, e.g. the range of specific parameters.
+The simulator then samples $x_i$ from the likelihood $p(x|\theta_i)$ and therefore generates a $(x_i,\theta_i)$ dataset.
+The likelihood is implicitly contained in the dataset but because the simulation solves a forward problem, this step is not very computationally costly.
 
-Sampling from simulator, train neural network, estimate posterior from observation \cref{fig:sbi-workflow}
+Next, a neural network is trained to map each tuple $(x_i,\theta_i)$ to an estimated posterior density $q_\phi(\theta_i|x_i)$.
+The network architecture can in theory be chosen freely but Normalizing Flows is commonly used.
+The loss function
+\begin{equation}
+  L(\phi) = E_{()}
+  \label{eq:loss}
+\end{equation}
+is minimized to improve the network weights.
+It consists of the expectation value over all sampled tuples of the negative logarithm of the estimated posterior.
+This is very similar to the definition of a cross entropy and will result in a balance between maximizing $q_\phi(\theta_i|x_i)$ at the correct $theta_i$ and confidence or slimness of the distribution.
+So the estimated posterior density $q_\phi(\theta_i|x_i)$ converges to the true posterior $p(\theta_i|x_i)$.
+
+Lastly, the observed datapoint $x_\text{obs}$ is inserted into the network and evaluated inside an interval of $\theta$ at any resolution.
+This will output the posterior distribution of any observation with relatively low computational cost. 
+There is no need for further training when analyzing new data under the assumption of the same model.
 
 \begin{figure}[htbp]
   \centering
@@ -89,20 +115,14 @@ Sampling from simulator, train neural network, estimate posterior from observati
 \section{Simple SBI Example}%
 \label{sec:example}
 
-Example: angled throw
+% Example: angled throw
+A fairly simple demonstration of SBI is done here with the help of the example of an angled throw.
 
-choose parameter prior, create simulator of throw, simulate dataset
+% choose parameter prior, create simulator of throw, simulate dataset
 
-train neural network, here normalizing flows, any network works
+% train neural network, here normalizing flows, any network works
 
-loss function
-
-\begin{equation}
-  L(\phi) = 
-  \label{eq:loss}
-\end{equation}
-
-use network to evaluate observation, data and param interval
+% use network to evaluate observation, data and param interval
 
 
 % ---------------------------------------------------------------------
