@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex report"] 1790698761.1118 "report.aux" "report.bbl" "report" 1790698878.61667 0
+["bibtex report"] 1790863361.99086 "report.aux" "report.bbl" "report" 1790863362.88241 0
   "./references.bib" 1788618296.6962 1819 648c960ef7e6891cd29df373a14d4e8d ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1790698878.37226 3574 f1302566fc8371613152469309506a6f "pdflatex"
+  "report.aux" 1790863362.68524 3616 f7cf7410dfc682d8c846469ef73955ea "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1790698877.70702 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1790698878.61693 0
+["pdflatex"] 1790863362.09845 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1790863362.88258 0
   "/etc/texmf/web2c/texmf.cnf" 1752061707.73798 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/jakob/projects/sbi-scientific-ml/report/report.tex" 1788615968.31479 3098 8eb09a9bc7147b1fa75cea650db38771 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -130,11 +130,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1786119970.80818 5349216 bf3a80e68d946c7acd95ff030fd9bb63 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1786120028 6830993 583a468a97b9bc339d219c52b49f970f ""
-  "report.aux" 1790698878.37226 3574 f1302566fc8371613152469309506a6f "pdflatex"
-  "report.bbl" 1790698761.22827 1974 b9d9b7f4f22e454e3bc1c7a59993a0bc "bibtex report"
-  "report.out" 1790698878.37226 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
+  "report.aux" 1790863362.68524 3616 f7cf7410dfc682d8c846469ef73955ea "pdflatex"
+  "report.bbl" 1790863362.08758 1974 b9d9b7f4f22e454e3bc1c7a59993a0bc "bibtex report"
+  "report.out" 1790863362.68524 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
   "report.tex" 1788615968.31479 3098 8eb09a9bc7147b1fa75cea650db38771 ""
-  "sections.tex" 1790698877.44826 13456 f4dd036f00f409827fa9b7c31406eb10 ""
+  "sections.tex" 1790863360.36791 17216 a7175fde7accf29926744316964ebd67 ""
   (generated)
   "report.aux"
   "report.log"
