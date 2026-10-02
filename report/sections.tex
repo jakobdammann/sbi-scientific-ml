@@ -205,17 +205,33 @@ If miscalibration is hinted at in the quantile-occurence plots, changes to the n
 \section{Application}%
 \label{sec:application}
 
-Short explanation of microlensing
+% Short explanation of microlensing
+The research area of gravitational microlensing is one of the prime examples where SBI shines in the data analysis pipeline.
+When a star with an exoplanet in orbit moves into the line of sight between earth and a bright background star the light of background star is lensed around the foreground star and exoplanet and magnified in a very specific way.
+This effect cannot be spatially resolved but telescopes can measure the change of brightness as a lightcurve.
+The shape of the lightcurve is defined by the physical properties of both stars and exoplanet resulting in a large amount of parameters (around 11) and a complex model while the data is often limited.
+Additionally, the model is also highly degenerate and often has multiple complex modes that have to explored manually when using classical Bayesian Inference.
 
-Results of usage of SBI \citep{microlensing-sbi}
+% Results of usage of SBI \citep{microlensing-sbi}
+This is the reason \cite{microlensing-sbi} is testing the capabilities of SBI for microlensing data from the Roman Space Telescope.
+The training was done with a dataset of more than 275,000 simulated events and about 25 hours.
+SBI was able to increase the computation speed drastically from $1$ simulation per second which would be needed for one MCMC step to $10^5$ posterior samples per second.
+What was found is that all the posterior modes where accurately modeled though some biases existed in the posterior.
+The authors recommend following up on SBI with MCMC to converge on an accurate posterior and also the most likely solution.
+This demonstrates SBIs functionality in the data analysis pipeline for quickly exploring multimodality of posteriors and attaining initial values for further inference methods.
 
-Short explanation of gravitational waves and black hole mergers
+% Short explanation of gravitational waves and black hole mergers
+Similarly, the models needed to analyze gravitational wave signals from black hole mergers are dependent on a lot of parameters but only very limited data is available.
+% FMPE \citep{flow-matching-sbi}
+\cite{flow-matching-sbi} use SBI in their data analysis pipeline for gravitational wave events but implement Flow Matching Posterior Estimation (FMPE) in their SBI architecture.
+Instead of Normalizing Flows FMPE is based on a Flow Matching neural network. 
+This learns a vector field transformation from a simple distribution to the real posterior and not the transformation of all the datapoints, achieving fewer parameters to describe the same transformation, a more expressive neural network and 30\% reduced training time.
+In turn, the inference time is increased since the sampling also requires solving an orthogonal differential equation dependent on the velocity field output.
 
-use of flow matching networks
+% Other applications
+Generally all physics or science research fields which are heavy in data processing would likely benefit from an implementation SBI in specific contexts.
+Other fields of research noted in \cite{sbi-guide} for SBI applications are psychophysics and neuroscience.
 
-results of usage here \citep{flow-matching-sbi}
-
-Other applications
 
 
 % ---------------------------------------------------------------------
