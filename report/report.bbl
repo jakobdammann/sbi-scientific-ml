@@ -15,10 +15,12 @@ Michael Deistler, Jan Boelts, Peter Steinbach, Guy Moss, Thomas Moreau, Manuel G
 \newblock Simulation-based inference: A practical guide, 2025.
 \newblock URL \url{https://arxiv.org/abs/2508.12939}.
 
-\bibitem[Prado et~al.(2026)Prado, Nemeth, and Sherlock]{prado2026metropolishastingsscalablesubsampling}
-Estevão Prado, Christopher Nemeth, and Chris Sherlock.
-\newblock Metropolis--hastings with scalable subsampling, 2026.
-\newblock URL \url{https://arxiv.org/abs/2407.19602}.
+\bibitem[Hastings(1970)]{Hastings1970}
+W.~K. Hastings.
+\newblock Monte carlo sampling methods using markov chains and their applications.
+\newblock \emph{Biometrika}, 57\penalty0 (1):\penalty0 97--109, 1970.
+\newblock \doi{10.1093/biomet/57.1.97}.
+\newblock URL \url{https://doi.org/10.1093/biomet/57.1.97}.
 
 \bibitem[Zhang et~al.(2021)Zhang, Bloom, Gaudi, Lanusse, Lam, and Lu]{microlensing-sbi}
 Keming Zhang, Joshua~S. Bloom, B.~Scott Gaudi, François Lanusse, Casey Lam, and Jessica~R. Lu.
