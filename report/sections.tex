@@ -4,10 +4,10 @@
 
 % What are inverse problems (in contrast to forward problems)
 In computational physics there are usually two types of problems to solve: 
-Firstly, forward problems where the parameters and/or boundary conditions of a model are given and the goal is to find data or a data distribution which adheres to this model. 
+First, forward problems where the parameters and/or boundary conditions of a model are given and the goal is to find data or a data distribution which adheres to this model. 
 For example in the case of given parameters and initial values this is a typical simulation.
 
-Though secondly, there are also inverse problems where the data is the preset and now the parameters or parameter distributions of the assumed model have to be inferred.
+Though second, there are also inverse problems where the data is the preset and now the parameters or parameter distributions of the assumed model have to be inferred.
 So here the data likely comes from an observation and the parameters which represent physical properties of the system have to be computed.
 This is the type of problem that will be explored in this review.
 
@@ -121,41 +121,56 @@ A fairly simple demonstration of SBI is done in the following section with the h
 The structure and code of this toy-example is adapted from \cite{sbi-guide}.
 
 A ball is thrown from the origin at a specific angle $\theta$. 
-This is the sole parameter of the model.
+The throwing velocity is always the same so $\theta$ is the sole parameter of the model.
 The ball lands on the ground at a specific distance from the origin, again this is the only data value $x$.
 The system behaves according to the physical laws of gravity, the flight trajectory should be a parabola.
 To turn the model probabilistic and make it harder for SBI to infer the posterior, a varying wind speed is added as a noise source.
 
 Now it is not trivial to infer the posterior distribution of throwing angles from just a single distance measurement.
 Even classical Bayesian methods would have problems since the posterior has two modes, a short throw could have come from either a very low angle or very high angle.
-A few example trajectories are shown in \cref{fig:angled-throw}a.
+A few example trajectories are shown in \cref{fig:angled-throw-sim} left.
 
 \begin{figure}
   \centering
-  % \includegraphics[width=0.8\linewidth]{figures/example.pdf}
-  \fbox{\parbox[c][4cm][c]{0.8\linewidth}{\centering Figure placeholder}}
-  \caption{Structure of SBI simulation and training for the simple example of an angled throw. Shown in a: simulation of throw trajectories, b: prior distribution of parameters $\theta_i$, c: simulated dataset $(\theta_i,x_i)$, d: training of the neural network to map $(\theta_i,x_i)$ to $q_\phi(\theta_i,x_i)$. Parts of the figure are adapted from \cite{sbi-guide}.}%
-  \label{fig:angled-throw}
+  \includegraphics[width=0.8\linewidth]{figures/fig_sbi-simulation.pdf}
+  \caption{Simulations in SBI from the example of an angled throw. Left: simulation of throw trajectories, Center: prior distribution of parameters $\theta_i$, Right: simulated dataset $(\theta_i,x_i)$. The example is adapted from \cite{sbi-guide}.}%
+  \label{fig:angled-throw-sim}
 \end{figure}
 
+
 % choose parameter prior, create simulator of throw, simulate dataset
-A parameter prior for throwing angle $\theta$ also needs to be chosen, here a Gaussian distribution which is limited between $0^\circ$ and $90^\circ$ and has its maximum at $35^\circ$ (as shown in \cref{fig:angled-throw}b) is a logical choice.
+A parameter prior for throwing angle $\theta$ also needs to be chosen, here a Gaussian distribution which is limited between $0^\circ$ and $90^\circ$ and has its maximum at $35^\circ$ (as shown in \cref{fig:angled-throw-sim} center) is a logical choice.
 Parameter values $\theta_i$ are sampled from this prior and put into the simulator that contains the probabilistic model of the angled throw as described above.
-A lot of angle - distance tuples $(\theta_i,x_i)$ are created, building the dataset that is shown in \cref{fig:angled-throw}c.
+A lot of angle - distance tuples $(\theta_i,x_i)$ are created, building the dataset that is shown in \cref{fig:angled-throw-sim} right.
 
 % train neural network, here normalizing flows, any network works
 This dataset is used to train a neural network based on the architecture of Normalizing Flows.
 The input of the network will be a tuple $(\theta_i,x_i)$ while the output is a predicted posterior density value $q_\phi$ at specifically $\theta = \theta_i$ in the parameter space under the assumption $x = x_i$.
-This is shown as a schematic in \cref{fig:angled-throw}d.
+This is shown as a schematic in \cref{fig:angled-throw-train}.
 The network is optimized with the loss function in \cref{eq:loss} as explained in \cref{sec:sbi}.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/figure_sbi-training.pdf}
+  \caption{Training of the neural network in SBI from the example of an angled throw. The network learns to map the tuples $(\theta_i,x_i)$ to the estimated posterior density $q_\phi(\theta_i,x_i)$. Parts of the figure are adapted from \cite{sbi-guide}.}%
+  \label{fig:angled-throw-train}
+\end{figure}
+
 % use network to evaluate observation, data and param interval
-With the trained network a posterior distribution is generated by inputting the observation $x_\text{obs}$, for example $x_\text{obs} = 10\,\text{m}$ and sampling the posterior in an interval of angles $\theta$ values.
+With the trained network a posterior distribution is generated by inputting the observation $x_\text{obs}$, for example $x_\text{obs} = 13\,\text{m}$ and sampling the posterior in an interval of angles $\theta$ values.
 This is done for a few hypothetical observations and sampled for $0^\circ < \theta < 90^\circ$.
 The sampling rate of $\theta$ can be chosen freely but affects the computational cost of the algorithm and may not offer any advantages when increasing it above a neural estimation accuracy.
 Though in this very simple example the computational cost is negligible.
-The results are shown in \cref{fig:angled-throw}e.
-For smaller $x_\text{obs}$ the two modes in the posterior are easily visible as two separate peaks.
+The results are shown in \cref{fig:angled-throw-posterior}.
+For smaller distances $x_\text{obs}$ the two modes in the posterior are easily visible as two separate peaks.
+For a high $x_\text{obs}$ value of $16\,\text{m}$ the estimated posterior is noisy, a result of a limited amount of simulations and subsequently a low density of datapoints at this distance.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/fig_sbi-est-posterior.pdf}
+  \caption{Estimated posteriors distributions $q_\phi(\theta,x_\text{obs})$ achieved with SBI from the example of an angled throw. The trained neural network was sampled at the specified $x_\text{obs}$ values and sampled in a $\theta$-intervall between $0^\circ$ and $90^\circ$. The example is adapted from \cite{sbi-guide}.}%
+  \label{fig:angled-throw-posterior}
+\end{figure}
 
 % ---------------------------------------------------------------------
 \section{Benefits and Limitations}%

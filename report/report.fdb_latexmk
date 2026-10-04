@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex report"] 1791143098.36119 "report.aux" "report.bbl" "report" 1791143099.03022 0
+["bibtex report"] 1791149225.43348 "report.aux" "report.bbl" "report" 1791149787.59316 0
   "./references.bib" 1791121954.30226 2176 5c2323b3366c96492836c39e36a84270 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1791143098.85406 5110 beb9e407cb1750ed8f8e4bd81eec5c4d "pdflatex"
+  "report.aux" 1791149787.18438 6604 a0b6d4db62729841b70a30a161389df2 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1791143098.41971 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1791143099.03043 0
+["pdflatex"] 1791149786.06821 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1791149787.5935 0
   "/etc/texmf/web2c/texmf.cnf" 1752061707.73798 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/jakob/projects/sbi-scientific-ml/report/report.tex" 1791143052.54474 3064 9661ee66eaae00f857646c349ce1655c ""
+  "/home/jakob/projects/sbi-scientific-ml/report/report.tex" 1791148483.51774 3064 9661ee66eaae00f857646c349ce1655c ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
@@ -46,12 +46,16 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1248133631 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -138,12 +142,15 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1786119970.80818 5349216 bf3a80e68d946c7acd95ff030fd9bb63 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1786120028 6830993 583a468a97b9bc339d219c52b49f970f ""
+  "figures/fig_sbi-est-posterior.pdf" 1791148359.02862 268444 77bdb32e341fd1a93f0e4c15d426d827 ""
+  "figures/fig_sbi-simulation.pdf" 1791148359.05646 83613 2fbea80f3b7f9035b264db5135294ac2 ""
+  "figures/figure_sbi-training.pdf" 1791148479.3273 123411 7be45ccb1046771f9b3484182edec8c5 ""
   "figures/figure_sbi-workflow.pdf" 1791135791.95111 78672 d16995c1036aa714ea763995107fe118 ""
-  "report.aux" 1791143098.85406 5110 beb9e407cb1750ed8f8e4bd81eec5c4d "pdflatex"
-  "report.bbl" 1791143098.41402 2004 d7da8e5b6b014161a9de0da53cbdbbcc "bibtex report"
-  "report.out" 1791143098.85806 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
-  "report.tex" 1791143052.54474 3064 9661ee66eaae00f857646c349ce1655c ""
-  "sections.tex" 1791143097.54195 22499 4878d037c7047acb0f0cc5970f3e658b ""
+  "report.aux" 1791149787.18438 6604 a0b6d4db62729841b70a30a161389df2 "pdflatex"
+  "report.bbl" 1791149225.48062 2004 d7da8e5b6b014161a9de0da53cbdbbcc "bibtex report"
+  "report.out" 1791149787.18438 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
+  "report.tex" 1791148483.51774 3064 9661ee66eaae00f857646c349ce1655c ""
+  "sections.tex" 1791149785.68069 23491 a5fae37153047c082cfee7e412c19be6 ""
   (generated)
   "report.aux"
   "report.log"
