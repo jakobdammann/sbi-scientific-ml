@@ -3,27 +3,27 @@
 \label{sec:intro}
 
 % What are inverse problems (in contrast to forward problems)
-In computational physics there are usually two types of problems to solve: 
-First, forward problems where the parameters and/or boundary conditions of a model are given and the goal is to find data or a data distribution which adheres to this model. 
-For example in the case of given parameters and initial values this is a typical simulation.
+In computational physics there are usually two types of problems to solve: forward problems and inverse problems.
+In a forward problem, the parameters and/or boundary conditions of a model are given and the solution is to find data or a data distribution which adheres to this model. 
+For example, in the case of given parameters and initial values, this is a typical simulation.
 
-Though second, there are also inverse problems where the data is the preset and now the parameters or parameter distributions of the assumed model have to be inferred.
-So here the data likely comes from an observation and the parameters which represent physical properties of the system have to be computed.
-This is the type of problem that will be explored in this review.
+In contrast, an inverse problem starts from data as a preset and the parameters or parameter distributions of the assumed model have to be inferred.
+Here, the data likely comes from an observation and the parameters which represent physical properties of the system have to be computed.
+This is the type of problem that will be explored in this report.
 
 % Inferring the parameter posterior with classical Bayesian methods or Simulation Based Inference
 A rather simple case of solving an inverse problem is the use of linear regression to fit a function to a given dataset.
-But for more complex models also methods with higher efficiency are needed.
-The classical approach here is to use Bayesian methods to infer the parameter posterior distribution, but Simulation-Based Inference introduces machine learning techniques to solving inverse problems.
-SBI is able to solve these problems in some cases more efficiently and computationally cheaper.
+For more complex models, however, more efficient methods are needed.
+The classical approach here is to use Bayesian methods to infer the parameter posterior distribution, but Simulation-Based Inference introduces machine learning techniques for solving inverse problems.
+In specific contexts, SBI is able to solve these problems more efficiently and computationally cheaper.
 % Short: examples where posterior estimation is needed
-Applications where SBI shows advantages are (but not limited to) gravitational microlensing \citep{microlensing-sbi}, gravitational wave physics \citep{flow-matching-sbi} and neuroscience \citep[Sec.\,4.3]{sbi-guide}.
+Applications where SBI shows advantages include, but are not limited to, gravitational microlensing \citep{microlensing-sbi}, gravitational wave physics \citep{flow-matching-sbi} and neuroscience \citep[Sec.\,4.3]{sbi-guide}.
 
 % Section Roadmap
-In \cref{sec:bayes} the general concepts of classical Bayesian inference are first explored, specifically focussing on Markov-Chain-Monte-Carlo methods.
-Then SBI and its underlying concepts are introduced in \cref{sec:sbi} and exemplified in \cref{sec:example} with the help of a toy-example.
+In \cref{sec:bayes} the general concepts of classical Bayesian inference are first introduced, specifically focussing on Markov-Chain-Monte-Carlo methods.
+Then SBI and its underlying concepts are introduced in \cref{sec:sbi} and illustrated in \cref{sec:example} with the help of a toy-example.
 The advantages and limitations of SBI are presented in \cref{sec:benefits-limitations}.
-Two exemplary applications with results are portrayed in \cref{sec:application} and a conclusion is given in \cref{sec:conclusion}.
+Two example applications in astrophysics and their results are presented in \cref{sec:application} and a conclusion is given in \cref{sec:conclusion}.
 
 
 % ---------------------------------------------------------------------
@@ -31,38 +31,39 @@ Two exemplary applications with results are portrayed in \cref{sec:application} 
 \label{sec:bayes}
 
 % General concept of Bayes equation
-The most outstanding feature of Bayesian Inference in comparison to regression is that the output of BI is a posterior distribution of the parameters instead of just a likely parameter set from this distribution.
-So instead of just computing $\theta \sim p(\theta|x)$, the result is the full $p(\theta|x)$ distribution.
-The naming convention here is that $\theta$ is the set of parameters from the model and $x$ is the observed data. 
+The most outstanding feature of Bayesian Inference (BI), in comparison to regression, is that the output of BI is a posterior distribution of the parameters, rather than simply a likely parameter set from this distribution.
+Instead of just computing $\theta \sim p(\theta|x)$, the result is the full $p(\theta|x)$ distribution.
+Here, $\theta$ denotes the set of parameters from the model while $x$ is the observed data. 
 
-The underlying concept is the Bayes equation 
+The underlying concept is the Bayes' theorem 
 \begin{equation}
   p(\theta|x) = \frac{p(x|\theta)}{p(x)} p(\theta)
   \label{eq:bayes}
 \end{equation}
 from Bayesian statistics where $p(\theta|x)$ is the posterior distribution, $p(x|\theta)$ the likelihood, $p(x)$ the evidence and $p(\theta)$ the prior distribution.
-While the prior can be chosen adequately according to assumed distributions of the model parameters and the evidence is just a normalizing factor, the likelihood $p(x|\theta)$ has to somehow be calculated, evaluated or approximated in numerical methods of inferencing the posterior.
+While the prior can be chosen adequately according to assumed distributions of the model parameters and the evidence is just a normalizing factor, the likelihood $p(x|\theta)$ has to be calculated, evaluated or approximated when using numerical methods for posterior inference.
 This is the most important and also most costly step of classical Bayesian Inference \citep[Sec.\,1]{sbi-guide}.
 
 % Methods of inference, MCMC
-Different methods of Bayesian inference solve this in different ways.
+Different methods of Bayesian Inference approach this differently.
 Markov chain Monte Carlo (MCMC) methods are relatively simple and widely used for inferring posteriors.
-These evaluate the likelihood many times randomly in the parameters space and build a posterior distribution from that.
-In Metropolis-Hastings, a MCMC method, the prior and likelihood value at a random point in the parameter space determines if this point is accepted or rejected.
+These evaluate the likelihood many times at random points in the parameters space and build a posterior distribution from that.
+In Metropolis-Hastings, a MCMC method, the prior and likelihood value at a random point in the parameter space determines whether this point is accepted or rejected.
 The accumulated distribution of the accepted points then converges to the posterior after many evaluations \citep{Hastings1970}.
 
 % Limitations: convergence, local approximation, multimodal posteriors
-There are adjusted methods that can make the algorithm more efficient (like introducing random walk instead of true random sampling) but all classical Bayesian inference methods suffer from similar key limitations:
+There are adjusted methods that can make the algorithm more efficient (such as introducing random walk instead of random sampling from a distribution) but all classical Bayesian inference methods suffer from similar key limitations.
 The convergence to a posterior that is accurate enough for the specific application takes many evaluations of the likelihood and is therefore very computationally expensive.
-For the applications that are later shown in \cref{sec:application} this can be up to 1 second per evaluation, for an adequately sampled posterior distribution the computation time per analyzed dataset can be huge.
+For the applications that are later shown in \cref{sec:application} this can be up to one second per evaluation, for an adequately sampled posterior distribution the computation time per analyzed dataset can be huge.
 
-In complex models the exact evaluation of the likelihood is often not possible or a lot more computationally expensive, so it has to be approximated by a Gaussian distribution, usually as part of the $\chi^2$ method.
-This inserts another error source into the posterior distribution.
+In complex models the exact evaluation of the likelihood is often impossible or considerably more computationally expensive.
+It then has to be approximated by a Gaussian distribution, usually as part of the $\chi^2$ method.
+This introduces an additional error source into the posterior.
 
 Classical Bayesian inference methods also have the problem that they cannot model multimodal posteriors very well.
 The algorithm often gets stuck in one mode and is unable to jump to another, this becomes a problem in models with a lot of close degeneracies \citep[Sec.\,1,\,2.1]{sbi-guide}.
-In turn, grid searches and human intervention are often needed which increases the time and effort of the data analysis process.
-This may not be a possibility for the huge amounts of data that needs to be processed in modern science.
+Consequently, grid searches and human intervention are often needed which increases the time and effort of the data analysis process.
+This is often impractical for the large amount of data that has to be processed in modern science.
 
 
 % ---------------------------------------------------------------------
@@ -70,22 +71,22 @@ This may not be a possibility for the huge amounts of data that needs to be proc
 \label{sec:sbi}
 
 % Skip Likelihood evaluation, implicit in simulation
-The key feature of Simulation-Based Inference is the skipping of the computationally expensive likelihood evaluation.
+The key feature of Simulation-Based Inference is that it avoids the computationally expensive likelihood evaluation.
 This is the reason SBI is sometimes also called Likelihood-Free Inference.
-Instead of explicitly using a method to evaluate the likelihood at specific points in parameter space, the likelihood is implicitly given when sampling data from a simulator of the model.
-A neural network will train on this simulated dataset to infer a parameter posterior distribution from an observation.
+Instead of explicitly evaluating the likelihood at specific points in parameter space, the likelihood is implicitly encoded in the data sampled from a simulator of the model.
+A neural network is trained on this simulated dataset to infer a parameter posterior distribution from an observation.
 The likelihood still exists inside the dataset but does not have to be calculated or approximated.
 
 % Neural Posterior Estimation (NPE)
-This review focusses on the direct inference of posteriors, this methodology is called Neural Posterior Estimation (NPE).
-This is in contrast to Neural Likelihood Estimation (NLE) and Neural (Likelihood-)Ratio Estimation (NRE), they respectively require an additional step of computation to achieve the posterior but may offer advantages or more insight in the analysis process.
+This report focusses on the direct inference of posteriors, a methodology called Neural Posterior Estimation (NPE).
+In contrast, Neural Likelihood Estimation (NLE) and Neural (Likelihood-)Ratio Estimation (NRE) each require an additional step of computation to obtain the posterior but may offer further advantages or more insight into the analysis process.
 
 % Sampling from simulator, train neural network, estimate posterior from observation
 The SBI workflow can be subdivided into three steps as shown in \cref{fig:sbi-workflow}:
 First, the simulator has to generate a relatively large dataset in accordance with the physical model.
-To achieve this, an adequate parameter prior distribution is chosen according to guesses on the physical properties of the model, e.g. the range of specific parameters.
-The simulator then samples $x_i$ from the likelihood $p(x|\theta_i)$ and therefore generates a $(x_i,\theta_i)$ dataset.
-The likelihood is implicitly contained in the dataset but because the simulation solves a forward problem, this step is not very computationally costly.
+To achieve this, an adequate parameter prior distribution is chosen based on assumptions about the physical properties of the model, e.g. the range of specific parameters.
+The simulator then samples $x_i$ from the likelihood $p(x|\theta_i)$ thereby generating a $(x_i,\theta_i)$ dataset.
+The likelihood is implicitly contained in the dataset, but because the simulation solves a forward problem, this step is not very computationally costly.
 
 \begin{figure}
   \centering
@@ -95,21 +96,21 @@ The likelihood is implicitly contained in the dataset but because the simulation
 \end{figure}
 
 Next, a neural network is trained to map each tuple $(x_i,\theta_i)$ to an estimated posterior density $q_\phi(\theta_i|x_i)$.
-The network architecture can in theory be chosen freely but Normalizing Flows is commonly used.
+The network can in principle be chosen freely, but commonly an architecture based on Normalizing Flows is used.
 The loss function
 \begin{equation}
   \mathcal{L}(\phi) = \mathbb{E}_{(\theta_i,x_i) \sim p(\theta,x)}\!\left[-\log q_\phi(\theta_i|x_i)\right]
   \label{eq:loss}
 \end{equation}
-is minimized to improve the network weights.
-It consists of the expectation value over all sampled tuples of the negative logarithm of the estimated posterior density.
-This is very similar to the definition of a cross entropy and will result in a balancing act between low loss values and high confidence in the posterior.
-Since the posterior has to be normalized, maximizing $q_\phi(\theta_i|x_i)$ at the correct $\theta_i$ has the drawback of having to be more confident by making the distribution more slim.
-So the estimated posterior density $q_\phi(\theta_i|x_i)$ is trained towards representing the true posterior $p(\theta_i|x_i)$.
+is minimized to optimize the network weights.
+It is the expectation value, over all sampled tuples, of the negative logarithm of the estimated posterior density.
+This closely resembles the definition of a cross entropy and balances low global loss values against high confidence in the posterior during training.
+Since $q_\phi(\theta_i|x_i)$ is normalized, maximizing it at the correct $\theta_i$ has the drawback of having to be more confident by narrowing the distribution.
+Thus, the estimated posterior density $q_\phi(\theta_i|x_i)$ is trained towards representing the true posterior $p(\theta_i|x_i)$.
 
-Lastly, the observed datapoint $x_\text{obs}$ is inserted into the network and evaluated inside an interval of $\theta$ at any resolution.
-This will output the posterior distribution of any observation with relatively low computational cost.
-It is worthy to note that there is no need for further training when analyzing new data under the assumption of the same model \citep[Sec.\,2.2,\,3]{sbi-guide}.
+Lastly, the observed data point $x_\text{obs}$ is fed into the network, which is evaluated over an interval of $\theta$ at any resolution.
+This yields the posterior distribution of any observation at a relatively low computational cost.
+It is worth noting that there is no need for further training when analyzing new data under the assumption of the same model \citep[Sec.\,2.2,\,3]{sbi-guide}.
 
 
 % ---------------------------------------------------------------------
@@ -117,58 +118,60 @@ It is worthy to note that there is no need for further training when analyzing n
 \label{sec:example}
 
 % Example: angled throw
-A fairly simple demonstration of SBI is done in the following section with the help of the simulation of an angled throw.
-The structure and code of this toy-example is adapted from \cite{sbi-guide}.
+A fairly simple demonstration of SBI is done in this section with the help of the simulation of an angled throw.
+The structure and code of this toy-example are adapted from \cite{sbi-guide}.
 
 A ball is thrown from the origin at a specific angle $\theta$. 
 The throwing velocity is always the same so $\theta$ is the sole parameter of the model.
 The ball lands on the ground at a specific distance from the origin, again this is the only data value $x$.
-The system behaves according to the physical laws of gravity, the flight trajectory should be a parabola.
+The system behaves according to the physical laws of gravity, the flight trajectory is a parabola.
 To turn the model probabilistic and make it harder for SBI to infer the posterior, a varying wind speed is added as a noise source.
 
 Now it is not trivial to infer the posterior distribution of throwing angles from just a single distance measurement.
-Even classical Bayesian methods would have problems since the posterior has two modes, a short throw could have come from either a very low angle or very high angle.
-A few example trajectories are shown in \cref{fig:angled-throw-sim} left.
+Even classical Bayesian methods would have problems, since the posterior is bimodal: a short throw could be the result of either a very low angle or very high angle.
+A few example trajectories are shown in \cref{fig:angled-throw-sim} (left).
 
 \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{figures/fig_sbi-simulation.pdf}
-  \caption{Simulations in SBI from the example of an angled throw. Left: simulation of throw trajectories, Center: prior distribution of parameters $\theta_i$, Right: simulated dataset $(\theta_i,x_i)$. The example is adapted from \cite{sbi-guide}.}%
+  \caption{Simulations in SBI from the example of an angled throw. Left: simulation of throwing trajectories, Center: prior distribution of parameters $\theta_i$, Right: simulated dataset $(\theta_i,x_i)$. The example is adapted from \cite{sbi-guide}.}%
   \label{fig:angled-throw-sim}
 \end{figure}
 
 
 % choose parameter prior, create simulator of throw, simulate dataset
-A parameter prior for throwing angle $\theta$ also needs to be chosen, here a Gaussian distribution which is limited between $0^\circ$ and $90^\circ$ and has its maximum at $35^\circ$ (as shown in \cref{fig:angled-throw-sim} center) is a logical choice.
+A parameter prior for throwing angle $\theta$ also has to be chosen.
+Here a Gaussian distribution truncated to $[0^\circ, 90^\circ]$ with its maximum at $35^\circ$ (as shown in \cref{fig:angled-throw-sim}, center) is a reasonable choice.
 Parameter values $\theta_i$ are sampled from this prior and put into the simulator that contains the probabilistic model of the angled throw as described above.
-A lot of angle - distance tuples $(\theta_i,x_i)$ are created, building the dataset that is shown in \cref{fig:angled-throw-sim} right.
+Many angle–distance tuples $(\theta_i,x_i)$ are generated, building the dataset that is shown in \cref{fig:angled-throw-sim} (right).
 
 % train neural network, here normalizing flows, any network works
 This dataset is used to train a neural network based on the architecture of Normalizing Flows.
-The input of the network will be a tuple $(\theta_i,x_i)$ while the output is a predicted posterior density value $q_\phi$ at specifically $\theta = \theta_i$ in the parameter space under the assumption $x = x_i$.
+The network takes a tuple $(\theta_i,x_i)$ as input and outputs the predicted posterior density value $q_\phi$ at specifically $\theta = \theta_i$ in the parameter space under the assumption $x = x_i$.
 This is shown as a schematic in \cref{fig:angled-throw-train}.
-The network is optimized with the loss function in \cref{eq:loss} as explained in \cref{sec:sbi}.
+The network is optimized using the loss function in \cref{eq:loss} as explained in \cref{sec:sbi}.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{figures/figure_sbi-training.pdf}
-  \caption{Training of the neural network in SBI from the example of an angled throw. The network learns to map the tuples $(\theta_i,x_i)$ to the estimated posterior density $q_\phi(\theta_i,x_i)$. Parts of the figure are adapted from \cite{sbi-guide}.}%
+  \caption{Training of the neural network in SBI from the example of an angled throw. The network learns to map the dataset of tuples $(\theta_i,x_i)$ to the estimated posterior density $q_\phi(\theta_i|x_i)$. The example and parts of the figure are adapted from \cite{sbi-guide}.}%
   \label{fig:angled-throw-train}
 \end{figure}
 
 % use network to evaluate observation, data and param interval
-With the trained network a posterior distribution is generated by inputting the observation $x_\text{obs}$, for example $x_\text{obs} = 13\,\text{m}$ and sampling the posterior in an interval of angles $\theta$ values.
-This is done for a few hypothetical observations and sampled for $0^\circ < \theta < 90^\circ$.
-The sampling rate of $\theta$ can be chosen freely but affects the computational cost of the algorithm and may not offer any advantages when increasing it above a neural estimation accuracy.
-Though in this very simple example the computational cost is negligible.
-The results are shown in \cref{fig:angled-throw-posterior}.
-For smaller distances $x_\text{obs}$ the two modes in the posterior are easily visible as two separate peaks.
-For a high $x_\text{obs}$ value of $16\,\text{m}$ the estimated posterior is noisy, a result of a limited amount of simulations and subsequently a low density of datapoints at this distance.
+With the trained network a posterior distribution is obtained by supplying the observation $x_\text{obs}$, e.g. $x_\text{obs} = 13\,\text{m}$, and evaluating the posterior density over an interval of angles $\theta$.
+This is repeated for a few hypothetical observations and sampled for $0^\circ < \theta < 90^\circ$.
+The sampling rate of $\theta$ can be chosen freely; it increases quality and affects the computational cost, but a finer grid brings no benefit beyond the accuracy of the network's estimate.
+In this simple example, however, the cost is negligible.
+
+Results are shown in \cref{fig:angled-throw-posterior}.
+For smaller distances $x_\text{obs}$, the two modes in the posterior are easily visible as two separate peaks, one with low angles and one with high angles.
+For a high $x_\text{obs}$ value of $16\,\text{m}$ the estimated posterior is noisy, a consequence of a limited number of simulations and subsequently a low density of datapoints at this distance.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{figures/fig_sbi-est-posterior.pdf}
-  \caption{Estimated posteriors distributions $q_\phi(\theta,x_\text{obs})$ achieved with SBI from the example of an angled throw. The trained neural network was sampled at the specified $x_\text{obs}$ values and sampled in a $\theta$-intervall between $0^\circ$ and $90^\circ$. The example is adapted from \cite{sbi-guide}.}%
+  \caption{Estimated posteriors distributions $q_\phi(\theta|x_\text{obs})$ achieved with SBI from the example of an angled throw. The trained neural network was sampled at the specified $x_\text{obs}$ values and evaluated in a $\theta$-intervall between $0^\circ$ and $90^\circ$. The example is adapted from \cite{sbi-guide}.}%
   \label{fig:angled-throw-posterior}
 \end{figure}
 
@@ -177,78 +180,78 @@ For a high $x_\text{obs}$ value of $16\,\text{m}$ the estimated posterior is noi
 \label{sec:benefits-limitations}
 
 SBI is able to outperform classical Bayesian Inference in specific contexts.
-The method's benefits can be summarized into three main concepts that are presented in the following section along with their limitations.
+The method's benefits can be summarized into three main concepts, which are presented in this section, followed by common limitations of SBI.
 
 % Likelihood-free (no approximation or expensive computation), 
-First of all, the inference of the posterior is likelihood-free.
+First, the inference of the posterior is likelihood-free.
 There is no need to explicitly evaluate the likelihood at random points in the parameter space like it is the case for MCMC, the likelihood is implicitly contained inside the dataset from the simulator the neural network is trained on.
-That means the inference itself can be made a lot faster and there is no need for approximations of the likelihood in the process like it is often done for Bayesian Inference.
+Inference itself can therefore be made much faster, and no likelihood approximations, as often needed for Bayesian Inference, are required.
 
 % very fast inference (Amortized Inference), 
-Adjacent to that, SBI offers the concept of Amortized Inference.
-Here the largest amount of computational cost is paid upfront when running the simulator and training the neural network, but the actual inference by the network is very fast and cheap.
-This can speed up the analysis for research purposes a lot if a model is reused for a lot of data since there is no additional simulating and training needed after the weights for a network are optimized.
-For complex models this is especially relevant, in classical Bayesian Inference a considerable amount of computation time would be needed at each likelihood evaluation.
+Second, SBI enables Amortized Inference.
+Here, most of the computational cost is paid upfront, when running the simulator and training the neural network, while the actual inference by the network is very fast and cheap.
+This can greatly accelerate the analysis when one model is reused for a lot of observations, since no further simulation and training is needed once the network weights are optimized.
+For complex models this is especially relevant, classical Bayesian Inference would require a considerable amount of computation time at each likelihood evaluation.
 
 % multimodal posteriors
-And thirdly, SBI is able to model the multimodality of posteriors very well. 
-It does not have to explore different modes manually like it is often the case for MCMC where the algorithm can get stuck inside a specific mode.
-The neural network is aware of the entire posterior at once, not only dependent on a local likelihood approximation.
+Third, SBI is able to model the multimodality of posteriors very well. 
+Unlike in MCMC, where the sampler can get stuck in a single mode and modes often have to be explored manually, the network represents the entire posterior at once rather than relying on local likelihood evaluations.
 
 % Limitations: 
-Though bundled with these advantages there are also limitations that exist in SBI algorithms.
+Though bundled with these advantages, there are also limitations come with SBI algorithms.
 % Upfront training, 
 The previously mentioned upfront simulation and training due to Amortized Inference may be a drawback when there is only a limited amount of observations to be processed.
-Therefore, the gain in inference speed is may not be worth it.
+Therefore, the gain in inference speed may not justify the upfront cost.
 
 % model misspecification (common pitfall)
 Since SBI is only as good as the simulator, a common pitfall is model misspecification.
-When giving the neural network an observation that has not been simulated before, because such a case is not included in the model, the network will output a nonsensical posterior distribution that is not related to real physics.
-To illustrate, when giving the trained network from the example in \cref{sec:example} a distance larger than any possible throw, the output will be an unpredictable posterior of angles that would never lead to such a distance.
-In complex models this is not trivial to avoid.
+When the neural network is given an observation that has not been simulated before, because such a case is not included in the model, the output will be a nonsensical posterior distribution that is not physically meaningful.
+To illustrate with the example in \cref{sec:example}, for a distance larger than any possible throw, the network will still return an unpredictable non-zero posterior over angles, even though no angle could lead to such a distance.
+In complex models, this is not trivial to detect and avoid.
 
 % posterior is a neural estimation
 It is important to remember that the output posterior is only a neural estimation and its quality depends on the simulations, the network architecture as well as training.
 There is no convergence guarantee analogous to MCMC to assure that the estimated posterior is getting closer to the true posterior.
-MCMC becomes asymptotically exact for long chains, but here the estimate is exact only in the limit of infinite training data and network capacity which makes the quality difficult to assess.
+MCMC becomes asymptotically exact for long chains, whereas the NPE estimate is exact only in the limit of infinite training data and network capacity, which makes its quality difficult to assess.
 
 % uncalibrated posterior
-A common problem of posteriors inferenced via NPE is that they may be miscalibrated.
-They can have biases, meaning a shifted mean to either side, or are either over- or underconfident, resulting in a distribution that is spread out not enough over too much.
-Though miscalibration can be diagnosed quite effectively with the help of quantile-occurence plots.
-The posterior probability of the true value is compared with how often it actually occurs in a validation dataset and can therefore show errors in posterior accuracy on a global scale.
-If miscalibration is hinted at in the quantile-occurence plots, changes to the network and training are probably necessary \citep[Sec\,1,\,2.2,\,3]{sbi-guide}.
+A common problem of posteriors inferred via NPE is miscalibration.
+The posteriors can be biased (a shifted mean to either side), overconfident (too narrow) or underconfident (too broad).
+However, miscalibration can be diagnosed effectively with quantile-occurence plots.
+These compare the posterior probability assigned to a tuple with how often it actually occurs in a validation dataset, thereby revealing errors in posterior accuracy on a global scale.
+If the plots indicate miscalibration, changes to the network and training are probably necessary \citep[Sec.\,1,\,2.2,\,3]{sbi-guide}.
 
 % ---------------------------------------------------------------------
 \section{Application}%
 \label{sec:application}
 
 % Short explanation of microlensing
-The research area of gravitational microlensing is one of the prime examples where SBI shines in the data analysis pipeline.
-When a star with an exoplanet in orbit moves into the line of sight between earth and a bright background star the light of background star is lensed around the foreground star and exoplanet and magnified in a very specific way.
-This effect cannot be spatially resolved but telescopes can measure the change of brightness as a lightcurve.
-The shape of the lightcurve is defined by the physical properties of both stars and exoplanet resulting in a large amount of parameters (around 11) and a complex model while the data is often limited.
-Additionally, the model is also highly degenerate and often has multiple complex modes that have to explored manually when using classical Bayesian Inference.
+The research area of gravitational microlensing is a prime example where SBI shines in the data analysis pipeline.
+When a star with an exoplanet in orbit moves into the line of sight between Earth and a bright background star, the light of background star is lensed around the foreground star and exoplanet and magnified in a characteristic way.
+This effect cannot be spatially resolved, but telescopes can measure the change of brightness as a light curve.
+The shape of the light curve is defined by the physical properties of both stars and exoplanet, resulting in a large amount of parameters (around 11) and a complex model, while the data is often limited.
+Additionally, the model is highly degenerate and often has multiple complex modes that have to explored manually when using classical Bayesian Inference.
 
 % Results of usage of SBI \citep{microlensing-sbi}
-This is the reason \cite{microlensing-sbi} is testing the capabilities of SBI for microlensing data from the Roman Space Telescope.
-The training was done with a dataset of more than 275,000 simulated events and about 25 hours.
-SBI was able to increase the computation speed drastically from $1$ simulation per second which would be needed for one MCMC step to $10^5$ posterior samples per second.
-What was found is that all the posterior modes where accurately modeled though some biases existed in the posterior.
-The authors recommend following up on SBI with MCMC to converge on an accurate posterior and also the most likely solution.
-This demonstrates SBIs functionality in the data analysis pipeline for quickly exploring multimodality of posteriors and attaining initial values for further inference methods.
+This is the reason why \cite{microlensing-sbi} tested the capabilities of SBI on microlensing data from the Roman Space Telescope.
+The training was done on a dataset of more than 275,000 simulated events, which took about 25 hours.
+SBI was able to increase the computation speed drastically, from $1$ simulation per second, which would be needed for one MCMC step, to $10^5$ posterior samples per second.
+All posterior modes where modeled accurately, although some biases existed in the posterior.
+The authors recommend following up on SBI with MCMC to refine the posterior, get rid of biases and identify the most likely solution.
+This demonstrates the usefulness of SBI in the data analysis pipeline for quickly exploring multimodality of posteriors and obtaining initial values for further inference methods.
 
 % Short explanation of gravitational waves and black hole mergers
-Similarly, the models needed to analyze gravitational wave signals from black hole mergers are dependent on a lot of parameters but only very limited data is available.
+Similarly, the models needed to analyze gravitational wave signals from black hole mergers depend on a lot of parameters, while only very limited data is available.
 % FMPE \citep{flow-matching-sbi}
-\cite{flow-matching-sbi} use SBI in their data analysis pipeline for gravitational wave events but implement Flow Matching Posterior Estimation (FMPE) in their SBI architecture.
-Instead of Normalizing Flows FMPE is based on a Flow Matching neural network. 
-This learns a vector field transformation from a simple distribution to the real posterior and not the transformation of datapoints, achieving fewer parameters to describe the same transformation, a more expressive neural network and 30\% reduced training time.
-In turn, the inference time is increased since the sampling also requires solving an ordinary differential equation dependent on the velocity field output.
+\cite{flow-matching-sbi} also use SBI in their data analysis pipeline for gravitational wave events, but implement Flow Matching Posterior Estimation (FMPE) in their SBI architecture.
+Instead of Normalizing Flows, FMPE is based on a Flow Matching neural network. 
+It learns a vector field transformation that turns a simple distribution to the real posterior, rather than transforming the of data points.
+This requires fewer parameters to describe the same transformation, yields a more expressive neural network and reduces training time by 30\%.
+Conversely, the inference time is increased, since the sampling also requires solving an ordinary differential equation defined by the velocity field output.
 
 % Other applications
-Generally all physics or science research fields which are heavy in data processing would likely benefit from an implementation SBI in specific contexts.
-Other fields of research noted in \cite{sbi-guide} for SBI applications are psychophysics and neuroscience.
+Generally, all data-intensive fields of physics or other science research would likely benefit from an implementation SBI in their data analysis pipelines.
+Other fields noted in \cite{sbi-guide} for SBI application are psychophysics and neuroscience.
 
 
 % ---------------------------------------------------------------------
@@ -256,26 +259,19 @@ Other fields of research noted in \cite{sbi-guide} for SBI applications are psyc
 \label{sec:conclusion}
 
 % Benefits
-Simulation-Based Inference offers benefits that are advantageous in specific parts of data analysis pipelines in many areas of physics.
-Namely, these are the Likelihood-Freeness of the Method, Amortized Inference and the ability to accurately model multimodality in posteriors.
+Simulation-Based Inference offers benefits that are advantageous in specific parts of data analysis pipelines across many areas of physics.
+Namely, these are the Likelihood-Freeness of the Method, Amortized Inference and the ability to model multimodality in posteriors accurately.
 % Limitations
-Limitations include the possibility of misspecification in the simulation, miscalibration of the posterior in the neural network and the neurally approximated nature of the output posterior.
-These have to be looked out for and avoided by validation techniques like quantile-occurence plots.
+Limitations include the possibility of misspecification in the simulation, miscalibration of the posterior inside the neural network and the neurally approximated nature of the output posterior.
+These must be monitored and mitigated with validation techniques such as quantile-occurence plots.
 
 % When to use SBI\: inverse problem, time critical inference, expensive likelihood evaluation, multimodal posterior
-An ideal use case would for SBI would be an inverse problem where the inference is time-critical, a likelihood evaluation is expensive and the posterior is possibly multimodal.
-In the data analysis pipeline SBI is very valuable to get a globally accurate estimation of the posterior. 
-It can be used to explore the parameter space and can be refined by expensive classical Bayesian methods at specific very likely solutions like it was recommended by \cite{microlensing-sbi}.
+An ideal use case for SBI would be an inverse problem where the inference is time-critical, a likelihood evaluation is expensive and the posterior is possibly multimodal.
+Within a data analysis pipeline, SBI is valuable for obtaining a globally accurate estimate of the posterior. 
+It can be used to explore the parameter space and can be refined by expensive classical Bayesian methods at specific, very likely solutions, like it was recommended by \cite{microlensing-sbi}.
 
 % Conclusion
-As datasets in physics or other sciences get larger, faster but still accurate ways of inferring information are needed and in that regard Simulation-Based Inference is going to be a very useful methodology for scientific data analysis based on machine learning.
-An influx in the amount of use of SBI for physics in the next few years is likely.
-Open challenges need to be addressed and improvements are still to be made but SBI will presumably grow into a key part of the modern Bayesian data analysis toolkit.
+As datasets in physics and other sciences expand rapidly, faster yet still accurate ways of inferring information are needed, and Simulation-Based Inference is going to be a very useful machine-learning-based methodology in that regard.
+It is reasonable to expect that the use of SBI in physics will increase in the coming years.
+Open challenges remain and improvements are still to be made, but SBI will presumably grow into a key part of the modern Bayesian data analysis toolkit.
 
-
-
-% TODO:
-% add sections to SBI-guide citations
-% figures
-% change benefits position
-% This
