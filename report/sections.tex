@@ -218,9 +218,18 @@ MCMC becomes asymptotically exact for long chains, whereas the NPE estimate is e
 % uncalibrated posterior
 A common problem of posteriors inferred via NPE is miscalibration.
 The posteriors can be biased (a shifted mean to either side), overconfident (too narrow) or underconfident (too broad).
-However, miscalibration can be diagnosed effectively with quantile-occurence plots.
+However, miscalibration can be diagnosed effectively with quantile-occurrence plots.
 These compare the posterior probability assigned to a tuple with how often it actually occurs in a validation dataset, thereby revealing errors in posterior accuracy on a global scale.
+The quantile-occurrence plots for model parameters from an application by \cite{microlensing-sbi} presented in \cref{sec:application} are shown in \cref{fig:microlensing} (right).
+Both bias and underconfidence are present in these plots, noticeable by their characteristic histogram shapes.
 If the plots indicate miscalibration, changes to the network and training are probably necessary \citep[Sec.\,1,\,2.2,\,3]{sbi-guide}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/figure_sbi-microlensing.pdf}
+  \caption{Results from SBI application on gravitational microlensing by \cite{microlensing-sbi}. Left: Corner plot of posterior distributions obtained with SBI (a) and simulated lightcurves (b). The posterior has five modes which are modeled accurately with the true value (orange) close by on of these. Right: Quantile-occurrence plots for parameters used in the model. $\text{log}_{10}(t)$, $u_0$ and $f_\text{S}$ are biased, while $t_0$ and $\alpha$ are underconfident. The figures are taken from \cite{microlensing-sbi}.}%
+  \label{fig:microlensing}
+\end{figure}
 
 % ---------------------------------------------------------------------
 \section{Application}%
@@ -238,6 +247,8 @@ This is the reason why \cite{microlensing-sbi} tested the capabilities of SBI on
 The training was done on a dataset of more than 275,000 simulated events, which took about 25 hours.
 SBI was able to increase the computation speed drastically, from $1$ simulation per second, which would be needed for one MCMC step, to $10^5$ posterior samples per second.
 All posterior modes where modeled accurately, although some biases existed in the posterior.
+A corner plot of an exemplary posterior (left) as well as quantile-occurrence plots (right) are shown in \cref{fig:microlensing}.
+Noticeably, the five modes of that posterior were captured by SBI and are easily discernable, but clear biases exist in the posteriors of $\text{log}_{10}(t)$, $u_0$ and $f_\text{S}$, while $t_0$ and $\alpha$ show underconfidence.
 The authors recommend following up on SBI with MCMC to refine the posterior, get rid of biases and identify the most likely solution.
 This demonstrates the usefulness of SBI in the data analysis pipeline for quickly exploring multimodality of posteriors and obtaining initial values for further inference methods.
 
@@ -264,7 +275,7 @@ Simulation-Based Inference offers benefits that are advantageous in specific par
 Namely, these are the Likelihood-Freeness of the Method, Amortized Inference and the ability to capture multimodality in posteriors accurately.
 % Limitations
 Limitations include the possibility of misspecification in the simulation, miscalibration of the posterior inside the neural network and the neurally approximated nature of the output posterior.
-These must be monitored and mitigated with validation techniques such as quantile-occurence plots.
+These must be monitored and mitigated with validation techniques such as quantile-occurrence plots.
 
 % When to use SBI\: inverse problem, time critical inference, expensive likelihood evaluation, multimodal posterior
 An ideal use case for SBI would be an inverse problem where the inference is time-critical, a likelihood evaluation is expensive and the posterior is possibly multimodal.

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex report"] 1791167034.46267 "report.aux" "report.bbl" "report" 1791167109.77446 0
+["bibtex report"] 1791170552.8462 "report.aux" "report.bbl" "report" 1791170554.20268 0
   "./references.bib" 1791166859.1974 4253 7834117d92323bb962b36109acdf157b ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1791167109.3114 6798 d70ac6f18dc458342259e2edd73a02b4 "pdflatex"
+  "report.aux" 1791170553.88198 8218 4f11722913dbf8de82fc9c0ee3a20329 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1791167108.09902 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1791167109.77481 0
+["pdflatex"] 1791170552.94499 "/home/jakob/projects/sbi-scientific-ml/report/report.tex" "report.pdf" "report" 1791170554.20297 0
   "/etc/texmf/web2c/texmf.cnf" 1752061707.73798 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/jakob/projects/sbi-scientific-ml/report/report.tex" 1791165080.0944 3087 e197de7444c071bc0a2d6ad630fa14df ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -144,13 +144,14 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1786120028 6830993 583a468a97b9bc339d219c52b49f970f ""
   "figures/fig_sbi-est-posterior.pdf" 1791148359.02862 268444 77bdb32e341fd1a93f0e4c15d426d827 ""
   "figures/fig_sbi-simulation.pdf" 1791148359.05646 83613 2fbea80f3b7f9035b264db5135294ac2 ""
+  "figures/figure_sbi-microlensing.pdf" 1791168949.46617 223121 a0716b1b40991c86092cdb24ad9c4069 ""
   "figures/figure_sbi-training.pdf" 1791148479.3273 123411 7be45ccb1046771f9b3484182edec8c5 ""
   "figures/figure_sbi-workflow.pdf" 1791135791.95111 78672 d16995c1036aa714ea763995107fe118 ""
-  "report.aux" 1791167109.3114 6798 d70ac6f18dc458342259e2edd73a02b4 "pdflatex"
-  "report.bbl" 1791167034.53355 2497 66150ea2fea53b2a4f3e1d18699b31ee "bibtex report"
-  "report.out" 1791167109.31537 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
+  "report.aux" 1791170553.88198 8218 4f11722913dbf8de82fc9c0ee3a20329 "pdflatex"
+  "report.bbl" 1791170552.92998 2497 66150ea2fea53b2a4f3e1d18699b31ee "bibtex report"
+  "report.out" 1791170553.88198 1053 86e44c953de681abb6b83ff6b8dcf518 "pdflatex"
   "report.tex" 1791165080.0944 3087 e197de7444c071bc0a2d6ad630fa14df ""
-  "sections.tex" 1791167107.61031 23308 e616e624a5ac1035d7bb42384df03a03 ""
+  "sections.tex" 1791170551.04197 24636 ea279be656893dd31e29583e2de36d1e ""
   (generated)
   "report.aux"
   "report.log"
