@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -21,6 +21,14 @@ W.~K. Hastings.
 \newblock \emph{Biometrika}, 57\penalty0 (1):\penalty0 97--109, 1970.
 \newblock \doi{10.1093/biomet/57.1.97}.
 \newblock URL \url{https://doi.org/10.1093/biomet/57.1.97}.
+
+\bibitem[Metropolis et~al.(1953)Metropolis, Rosenbluth, Rosenbluth, Teller, and Teller]{Metropolis1953}
+Nicholas Metropolis, Arianna~W. Rosenbluth, Marshall~N. Rosenbluth, Augusta~H. Teller, and Edward Teller.
+\newblock Equation of state calculations by fast computing machines.
+\newblock \emph{The Journal of Chemical Physics}, 21\penalty0 (6):\penalty0 1087--1092, 06 1953.
+\newblock ISSN 0021-9606.
+\newblock \doi{10.1063/1.1699114}.
+\newblock URL \url{https://doi.org/10.1063/1.1699114}.
 
 \bibitem[Zhang et~al.(2021)Zhang, Bloom, Gaudi, Lanusse, Lam, and Lu]{microlensing-sbi}
 Keming Zhang, Joshua~S. Bloom, B.~Scott Gaudi, François Lanusse, Casey Lam, and Jessica~R. Lu.

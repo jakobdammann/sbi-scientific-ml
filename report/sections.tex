@@ -14,7 +14,7 @@ This is the type of problem that will be explored in this report.
 % Inferring the parameter posterior with classical Bayesian methods or Simulation Based Inference
 A rather simple case of solving an inverse problem is the use of linear regression to fit a function to a given dataset.
 For more complex models, however, more efficient methods are needed.
-The classical approach here is to use Bayesian methods to infer the parameter posterior distribution, but Simulation-Based Inference introduces machine learning techniques for solving inverse problems.
+The classical approach here is to use Bayesian methods to infer the parameter posterior distribution, but Simulation-Based Inference (SBI) introduces machine learning techniques for solving inverse problems.
 In specific contexts, SBI is able to solve these problems more efficiently and computationally cheaper.
 % Short: examples where posterior estimation is needed
 Applications where SBI shows advantages include, but are not limited to, gravitational microlensing \citep{microlensing-sbi}, gravitational wave physics \citep{flow-matching-sbi} and neuroscience \citep[Sec.\,4.3]{sbi-guide}.
@@ -48,11 +48,11 @@ This is the most important and also most costly step of classical Bayesian Infer
 Different methods of Bayesian Inference approach this differently.
 Markov chain Monte Carlo (MCMC) methods are relatively simple and widely used for inferring posteriors.
 These evaluate the likelihood many times at random points in the parameters space and build a posterior distribution from that.
-In Metropolis-Hastings, a MCMC method, the prior and likelihood value at a random point in the parameter space determines whether this point is accepted or rejected.
-The accumulated distribution of the accepted points then converges to the posterior after many evaluations \citep{Hastings1970}.
+In Metropolis-Hastings, a MCMC method, the prior and likelihood value at a random point in the parameter space and their relation to the previous point determine whether this point is accepted or rejected.
+The accumulated distribution of the accepted points then converges to the posterior after many evaluations \citep{Metropolis1953,Hastings1970}.
 
 % Limitations: convergence, local approximation, multimodal posteriors
-There are adjusted methods that can make the algorithm more efficient (such as introducing random walk instead of random sampling from a distribution) but all classical Bayesian inference methods suffer from similar key limitations.
+There are adjusted methods that can make the algorithm more efficient (such as Hamiltonian Monte Carlo or nested sampling) but all classical Bayesian inference methods share similar key limitations.
 The convergence to a posterior that is accurate enough for the specific application takes many evaluations of the likelihood and is therefore very computationally expensive.
 For the applications that are later shown in \cref{sec:application} this can be up to one second per evaluation, for an adequately sampled posterior distribution the computation time per analyzed dataset can be huge.
 
@@ -194,7 +194,7 @@ This can greatly accelerate the analysis when one model is reused for a lot of o
 For complex models this is especially relevant, classical Bayesian Inference would require a considerable amount of computation time at each likelihood evaluation.
 
 % multimodal posteriors
-Third, SBI is able to model the multimodality of posteriors very well. 
+Third, SBI is able to capture the multimodality of posteriors very well. 
 Unlike in MCMC, where the sampler can get stuck in a single mode and modes often have to be explored manually, the network represents the entire posterior at once rather than relying on local likelihood evaluations.
 
 % Limitations: 
@@ -202,6 +202,7 @@ Though bundled with these advantages, there are also limitations come with SBI a
 % Upfront training, 
 The previously mentioned upfront simulation and training due to Amortized Inference may be a drawback when there is only a limited amount of observations to be processed.
 Therefore, the gain in inference speed may not justify the upfront cost.
+Additionally, a change in the parameter prior requires an entirely new costly simulation and training run.
 
 % model misspecification (common pitfall)
 Since SBI is only as good as the simulator, a common pitfall is model misspecification.
@@ -260,7 +261,7 @@ Other fields noted in \cite{sbi-guide} for SBI application are psychophysics and
 
 % Benefits
 Simulation-Based Inference offers benefits that are advantageous in specific parts of data analysis pipelines across many areas of physics.
-Namely, these are the Likelihood-Freeness of the Method, Amortized Inference and the ability to model multimodality in posteriors accurately.
+Namely, these are the Likelihood-Freeness of the Method, Amortized Inference and the ability to capture multimodality in posteriors accurately.
 % Limitations
 Limitations include the possibility of misspecification in the simulation, miscalibration of the posterior inside the neural network and the neurally approximated nature of the output posterior.
 These must be monitored and mitigated with validation techniques such as quantile-occurence plots.
